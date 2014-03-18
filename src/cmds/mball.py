@@ -12,11 +12,6 @@ def mball(components):
         'Very doubtful'
     ]
     response = ''
-
-    if components['arguments'] == '!mball':
-        # the user sent just the command, no garbage
-        random.shuffle(answers)
-        response = 'Magic Ball says: ' + random.choice(answers)
-
+    random.shuffle(answers)
+    response = 'Magic Ball says: ' + random.choice(answers)
     return response.encode('utf8')
-
