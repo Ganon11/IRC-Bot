@@ -55,6 +55,7 @@ cmds = {
     # commands list that the bot will execute even if a human didn't request an
     # action
     'auto': list(set([
+        'subreddits',
     ])),
 }
 
