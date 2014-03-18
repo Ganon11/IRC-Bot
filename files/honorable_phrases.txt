@@ -1,0 +1,30 @@
+i can:Honorable
+romulans:Dishonorable
+bacon:Honorable
+worfbot:Honorable
+quark:Dishonorable
+jean luc picard:Honorable
+house of durasbot:Dishonorable
+mogh:Honorable
+worf:Honorable
+gimli, son of gloin:Honorable
+moghbot:Honorable
+william riker:Honorable
+captain picard:Honorable
+durasbot:Dishonorable
+god:Honorable
+commander riker:Honorable
+jesus christ:Honorable
+jesus:Honorable
+blood wine:Honorable
+house of duras:Dishonorable
+aragorn:Honorable
+lwaxana troi:Dishonorable
+cheating:Dishonorable
+gimli:Honorable
+mstark:Honorable
+dishonor:Dishonorable
+aragorn, son of arathorn:Honorable
+duras:Dishonorable
+deanna troi:Dishonorable
+com:Dishonorable
