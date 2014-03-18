@@ -28,7 +28,7 @@ real_name = 'WorfBot, son of MoghBot'
 # channels to join on startup
 channels = list(set([
     '#mstark',
-    '#reddit-Christianity',
+    #'#reddit-Christianity',
 ]))
 
 cmds = {

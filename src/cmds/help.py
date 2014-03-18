@@ -8,9 +8,13 @@ def help(components): # !help
     if components['arguments'] == '!help':
         # the user sent just the command, no garbage
         response = (str(len(config.cmds['user'] + config.cmds['core'])) +
-                    ' available commands: ')
+                    ' available commands (user) ')
 
-        for command in config.cmds['user'] + config.cmds['core']:
+        for command in sorted(config.cmds['user']):
+            response = response + command + ' '
+            
+        response = response + '(core) '
+        for command in sorted(config.cmds['core']):
             response = response + command + ' '
 
     return response
