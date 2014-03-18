@@ -18,5 +18,5 @@ def mball(components):
         random.shuffle(answers)
         response = 'Magic Ball says: ' + random.choice(answers)
 
-    return response
+    return response.encode('utf8')
 

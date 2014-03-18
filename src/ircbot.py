@@ -6,7 +6,7 @@ import logging
 import os
 
 import config
-import parser
+import command_parser
 import err
 from functions import *
 
@@ -35,7 +35,7 @@ def run(socket, channels, cmds, nick):
                 buff = buff[buff.find('\n')+1 : ]
 
                 # command's components after parsing
-                components = parser.parse_command(command)
+                components = command_parser.parse_command(command)
                 to = send_to(command)
 
                 if 'PING' == components['action']:
