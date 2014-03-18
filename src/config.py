@@ -5,14 +5,13 @@ import logging
 
 # some commands can be executed only if the user's nick is found in this list
 owner = list(set([
-    'mstark',
-    'mstark|home',
-    'aletheist',
+    'paullik',
+    'foobarfoo',
+    'paullik-test',
 ]))
 
 owner_email = {
-    'mstark': 'stark3@gmail.com',
-    'mstark|home': 'stark3@gmail.com',
+    'foobarfoo': 'foobar@gmail.com',
 }
 
 # server to connect to
@@ -21,14 +20,14 @@ server = 'chat.freenode.net'
 port = 6667
 
 # bot's nicknames
-nicks = list(set(['WorfBot', 'WorfBot2', 'WorfBot3']))
+nicks = list(set(['PPyBot']))
 # bot's real name
-real_name = 'WorfBot, son of MoghBot'
+real_name = 'Paul Python Bot'
 
 # channels to join on startup
 channels = list(set([
-    '#mstark',
-    '#reddit-Christianity',
+    '#ppybbot',
+    '#test-chan',
 ]))
 
 cmds = {
@@ -42,20 +41,31 @@ cmds = {
 
     # normal commands list, the ones that are accessible to any user
     'user': list(set([
+        'task',
         'wiki',
+        'answer',
         'about',
         'help',
         'weather',
         'google',
         'mball',
         'uptime',
+        'so',
+        'twitter',
     ])),
 
     # commands list that the bot will execute even if a human didn't request an
     # action
     'auto': list(set([
+        'email_alert',
     ])),
 }
+
+# smtp server for email_alert
+smtp_server = 'smtp.gmail.com'
+smtp_port = 25
+from_email_address = 'changeme@gmail.com'
+from_email_password = 'p@s$w0rd'
 
 # users should NOT modify below!
 log = os.path.join(os.getcwd(), '..', 'logs', '')

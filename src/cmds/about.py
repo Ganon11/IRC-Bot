@@ -4,9 +4,6 @@ def about(components): # !about
 
     if components['arguments'] == '!about':
         # the user sent just the command, no garbage
-        response = """
-Author: Paullik @ http://github.com/paullik
-Modified by: Ganon11 @ http://github.com/Ganon11
-"""
+        response = 'Author: Paullik @ http://github.com/paullik'
 
     return response
