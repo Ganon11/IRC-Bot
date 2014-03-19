@@ -35,22 +35,23 @@ cmds = {
     # core commands list, these commands will be run in the same thread as the bot
     # and will have acces to the socket that the bot uses
     'core': list(set([
-        'quit',
-        'join',
         'channels',
+        'join',
+        'quit',
     ])),
 
     # normal commands list, the ones that are accessible to any user
     'user': list(set([
-        'wiki',
         'about',
+        'add',
         'help',
         'honor',
         'honour',
-        'weather',
         'google',
         'mball',
         'uptime',
+        'weather',
+        'wiki',
     ])),
 
     # commands list that the bot will execute even if a human didn't request an

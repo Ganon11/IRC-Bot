@@ -1,6 +1,17 @@
 import hashlib
 import os
 
+def save_phrases(phrases):
+    honor_file = open(os.path.join(os.getcwd(), '..', 'files', 'honorable_phrases.txt'), 'w')
+    for phrase in phrases:
+        line = phrase + ":"
+        if phrases[phrase]:
+            line = line + "Honorable\n"
+        else:
+            line = line + "Dishonorable\n"
+        honor_file.write(line)
+    honor_file.close()
+
 def load_phrases():
     honor_file = open(os.path.join(os.getcwd(), '..', 'files', 'honorable_phrases.txt'))
     phrases = dict()
@@ -13,6 +24,7 @@ def load_phrases():
         if honorable == 'Honorable':
             is_honorable = True
         phrases[file_phrase] = is_honorable
+    honor_file.close()
     return phrases
 
 def check_honor(phrase):
