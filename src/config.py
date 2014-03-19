@@ -8,6 +8,7 @@ owner = list(set([
     'mstark',
     'mstark|home',
     'aletheist',
+    'aletheia',
 ]))
 
 owner_email = {
@@ -16,7 +17,7 @@ owner_email = {
 }
 
 # server to connect to
-server = 'chat.freenode.net'
+server = 'irc.freenode.net'
 # server's port
 port = 6667
 

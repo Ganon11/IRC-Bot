@@ -28,7 +28,7 @@ def load_phrases():
     return phrases
 
 def check_honor(phrase):
-    lower_phrase = phrase.lower()
+    lower_phrase = phrase.lower().strip()
     phrases = load_phrases()
     if lower_phrase in phrases:
         if phrases[lower_phrase]:
