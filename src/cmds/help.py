@@ -17,4 +17,4 @@ def help(components): # !help
         for command in sorted(config.cmds['core']):
             response = response + command + ' '
 
-    return response
+    return response.encode('utf8')
