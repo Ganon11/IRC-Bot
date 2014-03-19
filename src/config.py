@@ -46,6 +46,7 @@ cmds = {
         'about',
         'help',
         'honor',
+        'honour',
         'weather',
         'google',
         'mball',
