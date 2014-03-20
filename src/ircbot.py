@@ -82,9 +82,9 @@ def run(socket, channels, cmds, nick):
                     nick == components['action_args'][1]:
                         channels.remove(components['action_args'][0])
 
-                elif 'QUIT' == components['action'] and \
-                        -1 != components['arguments'].find('Ping timeout: '):
-                    channels[:] = []
+                #elif 'QUIT' == components['action'] and \
+                #        -1 != components['arguments'].find('Ping timeout: '):
+                #    channels[:] = []
 
                 # this call is still necessary in case that a PONG response or a
                 # core command response should be sent, every other response is
