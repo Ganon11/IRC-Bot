@@ -17,7 +17,7 @@ owner_email = {
 }
 
 # server to connect to
-server = 'irc.freenode.net'
+server = 'chat.freenode.net'
 # server's port
 port = 6667
 
@@ -36,6 +36,7 @@ cmds = {
     # core commands list, these commands will be run in the same thread as the bot
     # and will have acces to the socket that the bot uses
     'core': list(set([
+        'add',
         'channels',
         'join',
         'quit',
@@ -44,7 +45,6 @@ cmds = {
     # normal commands list, the ones that are accessible to any user
     'user': list(set([
         'about',
-        'add',
         'help',
         'honor',
         'honour',
@@ -64,6 +64,6 @@ cmds = {
 
 # users should NOT modify below!
 log = os.path.join(os.getcwd(), '..', 'logs', '')
-logging_level = logging.DEBUG
+logging_level = logging.INFO
 start_time = time.time()
 current_nick = ''

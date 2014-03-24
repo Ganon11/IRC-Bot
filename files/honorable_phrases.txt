@@ -3,11 +3,13 @@ romulans:Dishonorable
 bacon:Honorable
 jesus:Honorable
 wasps:Dishonorable
+lucifer:Dishonorable
 jean luc picard:Honorable
 cheating:Dishonorable
 god:Honorable
 dishonor:Dishonorable
 mogh:Honorable
+satan:Dishonorable
 gimli:Honorable
 moghbot:Honorable
 deanna troi:Dishonorable
