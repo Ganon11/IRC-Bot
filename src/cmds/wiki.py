@@ -30,7 +30,7 @@ def get_paragraph(wlink):
         page_request.add_header('User-agent', 'Mozilla/5.0')
         page = urllib2.urlopen(page_request)
     except IOError:
-        msg = 'Cannot acces link!'
+        msg = 'Cannot access link!'
     else:
 
         soup = BeautifulSoup(page)

@@ -37,7 +37,7 @@ def check_honor(phrase):
             return False
     else:
         hasher = hashlib.md5()
-        hasher.update(phrase)
+        hasher.update(lower_phrase)
         last_digit = hasher.hexdigest()[-1]
         if last_digit in ['0', '1', '2', '3', '4', '5', '6', '7']:
             return True

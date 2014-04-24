@@ -28,9 +28,12 @@ def quit(socket, components): # !quit [chan_name]+ -> PART #channel
 
                 for chan in arg_channels:
                     chan = chan.strip('\r')
-                    if chan in config.channels: # valid channel
-                        leave.append(chan)
-                        config.channels.remove(chan)
+                    for curr_chan in config.channels:
+                        print "have chan %s and curr_chan %s" % (chan, curr_chan)
+                        print "comparing %s and %s" % (chan.lower(), curr_chan.lower())
+                        if chan.lower() in curr_chan.lower(): # valid channel
+                            leave.append(chan)
+                            config.channels.remove(curr_chan)
 
                 if len(leave):
                     response.append(','.join(leave))

@@ -1,20 +1,22 @@
+lwaxana troi:Dishonorable
 wasp:Dishonorable
 romulans:Dishonorable
 bacon:Honorable
 jesus:Honorable
 wasps:Dishonorable
-lucifer:Dishonorable
 jean luc picard:Honorable
 cheating:Dishonorable
 god:Honorable
 dishonor:Dishonorable
 mogh:Honorable
+lucifer:Dishonorable
 satan:Dishonorable
 gimli:Honorable
 moghbot:Honorable
 deanna troi:Dishonorable
 william riker:Honorable
 mstark:Honorable
+blood wine:Honorable
 i can:Honorable
 quark:Dishonorable
 aragorn, son of arathorn:Honorable
@@ -23,12 +25,13 @@ captain picard:Honorable
 worfbot:Honorable
 aragorn:Honorable
 gimli, son of gloin:Honorable
-blood wine:Honorable
+namer98:Honorable
 house of duras:Dishonorable
 commander riker:Honorable
 worf:Honorable
 duras:Dishonorable
 durasbot:Dishonorable
-lwaxana troi:Dishonorable
+st. thomas aquinas:Honorable
+eclipse:Dishonorable
 jesus christ:Honorable
 com:Dishonorable

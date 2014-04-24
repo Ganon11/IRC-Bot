@@ -17,5 +17,5 @@ def add(socket, components):
     phrases = honor_functions.load_phrases()
     phrases[lower_phrase] = truth_value
     honor_functions.save_phrases(phrases)
-    response = "'" + phrase + "' added as '" + str(truth_value) + "'"
+    response = "'%s' added as '%s'" % (phrase, value)
     return response.encode('utf8')

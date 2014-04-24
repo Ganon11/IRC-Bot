@@ -17,7 +17,8 @@ def weather(components): # !weather <city> or !weather <city>, <state or country
     except:
         response = 'Usage: !weather <city>, <state>'
     else:
-        location = location.replace(' ', '')
+        # Remove repeated spaces
+        location = ((location.replace(' ', '<>')).replace('><', '')).replace('<>', ' ')
         conditions = get_weather(location)
         if type(conditions) == type(str()):
             response = conditions
@@ -41,7 +42,7 @@ def get_weather(location):
     base_url = 'http://api.wunderground.com/auto/wui/geo/WXCurrentObXML/index.xml?query='
 
     try:
-        page = urllib.urlopen(base_url + location)
+        page = urllib.urlopen(base_url + urllib.quote_plus(location))
     except:
         return 'Could not open the page!'
     else:
