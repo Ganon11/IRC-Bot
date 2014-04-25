@@ -3,13 +3,15 @@ import os
 import requests
 import scriptures
 
-BIBLES_ORG_URL = 'https://bibles.org/v2/'
-BIBLES_ORG_API_PASS = 'X'
 BIBLES_ORG_API_KEY = ''
-BIBLES_ORG_VERSIONS = 'versions'
+BIBLES_ORG_API_PASS = 'X'
+BIBLES_ORG_API_VER = 'v2'
 BIBLES_ORG_CHAPTERS = 'chapters'
-DEFAULT_VERSION = 'eng-KJVA'
-BIBLES_ORG_VERSES = 'verses.json'
+BIBLES_ORG_URL = 'https://bibles.org'
+BIBLES_ORG_VERSES = 'verses'
+BIBLES_ORG_VERSIONS = 'versions'
+DEFAULT_LANGUAGE = 'eng'
+DEFAULT_VERSION = 'KJVA'
 
 BOOKS_TO_BOOKS = {
 	# Old Testament
@@ -97,11 +99,38 @@ BOOKS_TO_BOOKS = {
 	'Revelation of Jesus Christ' : 'Rev'
 }
 
+def MakeRequest(url):
+	r = requests.get(url, auth=(BIBLES_ORG_API_KEY, BIBLES_ORG_API_PASS))
+	return r
+
 def LoadApiKey():
+	global BIBLES_ORG_API_KEY
 	if BIBLES_ORG_API_KEY == '':
-		api_key_file = open(os.path.join(os.getcwd(), '..', 'files', 'bibles_org_api_key.dat'))
+		api_key_file = open(os.path.join(os.getcwd(), '..', '..', 'files', 'bibles_org_api_key.dat'))
 		BIBLES_ORG_API_KEY = api_key_file.read()
 
-def GetVerse(verse):
+def GetVerse(verse, lang=DEFAULT_LANGUAGE, version=DEFAULT_VERSION):
+	'''
+	Gets the text of the requested verse(s), in the requested language/translation.
+
+	verse is a 5-value tuple:
+	(Book name, start chapter, start verse, end chapter, end verse)
+	'''
 	LoadApiKey()
-	verses = scriptures.extract(verse)
+	request_url = '%(url_base)s/%(api_ver)s/%(action)s/%(language)s-%(translation)s:%(book)s.%(chapter)s.%(verse)s.js' % {
+		'url_base': BIBLES_ORG_URL,
+		'api_ver': BIBLES_ORG_API_VER,
+		'action': BIBLES_ORG_VERSES,
+		'language': lang,
+		'translation': version,
+		'book': BOOKS_TO_BOOKS[verse[0]],
+		'chapter': verse[1],
+		'verse': verse[2]
+	}
+	print 'Making request to ' + str(request_url)
+	resp = MakeRequest(request_url)
+	print 'Got response ' + str(resp.text)
+
+if __name__ == '__main__':
+	myVerse = ('Romans', 1, 1, 1, 10)
+	GetVerse(myVerse)
