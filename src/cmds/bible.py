@@ -12,6 +12,7 @@ DEFAULT_VERSION = 'eng-KJVA'
 BIBLES_ORG_VERSES = 'verses.json'
 
 BOOKS_TO_BOOKS = {
+	# Old Testament
 	'Genesis': 'Gen',
 	'Exodus' : 'Exod',
 	'Leviticus' : 'Lev',
@@ -51,6 +52,8 @@ BOOKS_TO_BOOKS = {
 	'Haggai' : 'Hag',
 	'Zechariah' : 'Zech',
 	'Malachi' : 'Mal',
+
+	#Deuterocanon
 	'Tobit' : 'Tob',
 	'Judith' : 'Jdt',
 	'Esther (Greek)' : 'AddEsth',
@@ -64,6 +67,7 @@ BOOKS_TO_BOOKS = {
 	'2 Esdras' : '2Esd',
 	'The Prayer of Manasseh' : 'PrMan',
 
+	#New Testament
 	'Matthew' : 'Matt',
 	'Mark' : 'Mark',
 	'Luke' : 'Luke',
