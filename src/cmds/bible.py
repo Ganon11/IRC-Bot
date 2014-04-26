@@ -1,3 +1,9 @@
+# All Scripture quotations, unless otherwise indicated, are taken from The
+# Holy Bible, English Standard Version. Copyright (c)2001 by Crossway Bibles
+# (http://www.crosswaybibles.org), a publishing ministry of Good News
+# Publishers. Used by permission. All rights reserved. Text provided by the
+# Crossway Bibles Web Service (http://www.gnpcb.org/esv/share/services/).
+
 import os
 import re
 import requests
