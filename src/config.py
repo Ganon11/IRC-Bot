@@ -28,7 +28,7 @@ real_name = 'WorfBot, son of MoghBot'
 
 # channels to join on startup
 channels = list(set([
-    '#reddit-Christianity',
+    #'#reddit-Christianity',
     '#mstark',
 ]))
 
@@ -45,6 +45,7 @@ cmds = {
     # normal commands list, the ones that are accessible to any user
     'user': list(set([
         'about',
+        'bible',
         'help',
         'honor',
         'honour',
