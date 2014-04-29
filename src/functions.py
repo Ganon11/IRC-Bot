@@ -5,6 +5,7 @@ import socket
 import threading
 import os
 import logging
+#import time
 
 def get_sender(msg):
     "Returns the user's nick (string) that sent the message"
@@ -309,8 +310,13 @@ def send_response(response, destination, s):
         if '\r\n' != response[-2:]:
             response = response + '\r\n'
 
+        lines = response.split('\r\n')
         try:
             with send_response_lock:
+                #for line in lines:
+                #    if line != '':
+                #        s.send(line)
+                #        time.sleep(0.5)
                 s.send(response)
         except IOError as e:
             logging.error('Unexpected error while sending the response: {0}\n'
