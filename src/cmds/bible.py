@@ -4,6 +4,7 @@
 # Publishers. Used by permission. All rights reserved. Text provided by the
 # Crossway Bibles Web Service (http://www.gnpcb.org/esv/share/services/).
 
+from pythonbible import Passage
 import os
 import re
 import requests
@@ -71,7 +72,13 @@ def bible(components):
 	if len(refs) == 0:
 		return ''
 	response = ''
+	verse_length = 0
 	for r in refs:
+		start_string = scriptures.reference_to_string(r[0], r[1], r[2], r[1], r[2])
+		end_string = scriptures.reference_to_string(r[0], r[3], r[4], r[3], r[4])
+		verse_length = verse_length + Passage(start_string, end_string).__len__()
+		if verse_length > 5:
+			return 'Could not fetch verses: length of passage too long'.encode('utf8')
 		vs = GetPassage(r)
 		response = '%(old_resp)s%(spec)s\r\n%(verses)s\r\n' % {
 			'old_resp': response,
