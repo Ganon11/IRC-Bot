@@ -76,7 +76,7 @@ def bible(components):
 	for r in refs:
 		start_string = scriptures.reference_to_string(r[0], r[1], r[2], r[1], r[2])
 		end_string = scriptures.reference_to_string(r[0], r[3], r[4], r[3], r[4])
-		verse_length = verse_length + Passage(start_string, end_string).__len__()
+		verse_length = verse_length + len(Passage(start_string, end_string))
 		if verse_length > 5:
 			return 'Could not fetch verses: length of passage too long'.encode('utf8')
 		vs = GetPassage(r)
@@ -86,3 +86,8 @@ def bible(components):
 			'verses': vs
 		}
 	return response.encode('utf8')
+
+if __name__ == "__main__":
+	comp = {}
+	comp['arguments'] = '!bible Philemon 1'
+	print bible(comp)

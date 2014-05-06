@@ -34,7 +34,11 @@ def get_paragraph(wlink):
     else:
 
         soup = BeautifulSoup(page)
-        msg = ''.join(soup.find('div', { 'id' : 'bodyContent'}).p.findAll(text=True))
+        msg = ''
+        try:
+            msg = ''.join(soup.find('div', { 'id' : 'bodyContent'}).p.findAll(text=True))
+        except AttributeError:
+            return 'Wikipedia does not have an encyclopedic article for your search term.'
 
         while 460 < len(msg): # the paragraph cannot be longer than 510
             # characters including the protocol command
@@ -42,3 +46,8 @@ def get_paragraph(wlink):
             msg = msg[:pos]
 
     return msg
+
+if __name__ == "__main__":
+    comp = {}
+    comp['arguments'] = '!wiki squick'
+    print wiki(comp)
