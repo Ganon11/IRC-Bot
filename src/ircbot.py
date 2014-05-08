@@ -6,7 +6,7 @@ import logging
 import os
 
 import config
-import parser
+import command_parser
 import err
 from functions import *
 
@@ -35,7 +35,7 @@ def run(socket, channels, cmds, nick):
                 buff = buff[buff.find('\n')+1 : ]
 
                 # command's components after parsing
-                components = parser.parse_command(command)
+                components = command_parser.parse_command(command)
                 to = send_to(command)
 
                 if 'PING' == components['action']:
@@ -44,7 +44,7 @@ def run(socket, channels, cmds, nick):
                     response.append(':' + components['arguments'])
 
                 elif 'PRIVMSG' == components['action']:
-                    if '!' == components['arguments'][0]:
+                    if '.' == components['arguments'][0] or '!' == components['arguments'][0]:
                         # a command from a user only makes sense if it starts
                         # with an exclamation mark
 
@@ -83,8 +83,9 @@ def run(socket, channels, cmds, nick):
                         channels.remove(components['action_args'][0])
 
                 elif 'QUIT' == components['action'] and \
-                        -1 != components['arguments'].find('Ping timeout: '):
-                    channels[:] = []
+                    -1 != components['arguments'].find('ERROR :Closing Link') and \
+                    -1 != components['arguments'].find('Ping timeout: '):
+                        channels[:] = []
 
                 # this call is still necessary in case that a PONG response or a
                 # core command response should be sent, every other response is

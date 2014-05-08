@@ -30,11 +30,15 @@ def get_paragraph(wlink):
         page_request.add_header('User-agent', 'Mozilla/5.0')
         page = urllib2.urlopen(page_request)
     except IOError:
-        msg = 'Cannot acces link!'
+        msg = 'Cannot access link!'
     else:
 
         soup = BeautifulSoup(page)
-        msg = ''.join(soup.find('div', { 'id' : 'bodyContent'}).p.findAll(text=True))
+        msg = ''
+        try:
+            msg = ''.join(soup.find('div', { 'id' : 'bodyContent'}).p.findAll(text=True))
+        except AttributeError:
+            return 'Wikipedia does not have an encyclopedic article for your search term.'
 
         while 460 < len(msg): # the paragraph cannot be longer than 510
             # characters including the protocol command
@@ -42,3 +46,8 @@ def get_paragraph(wlink):
             msg = msg[:pos]
 
     return msg
+
+if __name__ == "__main__":
+    comp = {}
+    comp['arguments'] = '!wiki squick'
+    print wiki(comp)
