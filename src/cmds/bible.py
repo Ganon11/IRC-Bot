@@ -9,6 +9,7 @@ import os
 import re
 import requests
 import scriptures
+import sys
 
 ESVAPI_KEY = ''
 ESVAPI_URL = 'http://www.esvapi.org/v2/rest/passageQuery' 
@@ -89,5 +90,8 @@ def bible(components):
 
 if __name__ == "__main__":
 	comp = {}
-	comp['arguments'] = '!bible Philemon 1'
+        if len(sys.argv) > 1:
+                comp['arguments'] = '!bible %s' % ' '.join(sys.argv[1:])
+        else:
+                comp['arguments'] = '!bible John 3:16'
 	print bible(comp)
