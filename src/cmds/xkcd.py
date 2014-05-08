@@ -64,12 +64,12 @@ def build_comics_db():
     last_comic = cur.execute("SELECT MAX(comic_num) FROM Comics LIMIT 1")
     last_comic = last_comic.fetchone()[0]
     if last_comic == None:
-        last_comic = 1
+        last_comic = 0
 
     latest = get_latest_comic()
-    if latest["num"] == last_comic:
-        return
-    for i in range(last_comic, latest["num"]):
+    # if latest["num"] == last_comic:
+    #     return
+    for i in range(last_comic + 1, latest["num"] + 1):
             if i == 404:
                 data = {}
                 data["title"] = "404"
