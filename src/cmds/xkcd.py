@@ -7,7 +7,7 @@ import HTMLParser
 def xkcd(components):
     ''' Returns xkcd comic data given a user's search (comic number/name or search term)
     '''
-
+    build_comics_db() # first time this is run could take awhile...
     response = ''
     try:
         search = components['arguments'].split('!xkcd ')[1]
