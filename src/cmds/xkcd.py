@@ -95,7 +95,7 @@ def search_comics(search):
     Failing that, it looks for comics that contain the search term
     in alt - text
     '''
-    conn = sqlite3.connect("comics.db")
+    conn = sqlite3.connect(os.path.join(os.getcwd(), '..', 'files', 'comics.db'))
     cur = conn.cursor()
     query = "SELECT * FROM Comics WHERE title = ? COLLATE NOCASE"
     response = cur.execute(query, (search,))
