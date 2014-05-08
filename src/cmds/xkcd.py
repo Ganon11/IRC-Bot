@@ -7,7 +7,7 @@ import HTMLParser
 def xkcd(components):
     ''' Returns xkcd comic data given a user's search (comic number/name or search term)
     '''
-    build_comics_db() # first time this is run could take awhile...
+    build_comics_db()  # first time this is run could take awhile...
     response = ''
     try:
         search = components['arguments'].split('!xkcd ')[1]
@@ -54,7 +54,7 @@ def get_latest_comic():
 def build_comics_db():
     ''' Builds the database and appends new comics when found
     '''
-    conn = sqlite3.connect("comics.db")
+    conn = sqlite3.connect(os.path.join(os.getcwd(), '..', 'files', 'comics.db')
     cur = conn.cursor()
     h = HTMLParser.HTMLParser()
 
