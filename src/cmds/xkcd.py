@@ -2,6 +2,7 @@ import urllib
 import json
 import sqlite3
 import HTMLParser
+import os
 
 
 def xkcd(components):
@@ -22,7 +23,7 @@ def xkcd(components):
     else:
         data = search_comics(search)
         if data != None:
-            response = data[0] + " - http://xkcd.com/" + str(data[2]) + " - " + data[1]
+            response = data[0] + " - http://xkcd.com/" + str(data[2]) + "\r\n" + data[1]
         else:
             response = "No comic found!"
 
@@ -36,7 +37,7 @@ def get_comic(comic_num):
     except:
         return "Comic doesn't exist!"
     data = json.load(response)
-    return data["title"] + " - http://xkcd.com/{}".format(comic_num) + " - " + data["alt"]
+    return data["title"] + " - http://xkcd.com/{}".format(comic_num) + "\r\n" + data["alt"]
 
 
 def get_latest_comic():
@@ -54,7 +55,7 @@ def get_latest_comic():
 def build_comics_db():
     ''' Builds the database and appends new comics when found
     '''
-    conn = sqlite3.connect(os.path.join(os.getcwd(), '..', 'files', 'comics.db')
+    conn = sqlite3.connect(os.path.join(os.getcwd(), '..', 'files', 'comics.db'))
     cur = conn.cursor()
     h = HTMLParser.HTMLParser()
 
