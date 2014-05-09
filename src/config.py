@@ -54,6 +54,7 @@ cmds = {
         'uptime',
         'weather',
         'wiki',
+        'xkcd'
     ])),
 
     # commands list that the bot will execute even if a human didn't request an

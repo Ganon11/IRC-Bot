@@ -11,8 +11,7 @@ def xkcd(components):
     build_comics_db()  # first time this is run could take awhile...
     response = ''
     try:
-        search = components['arguments'].split('!xkcd ')[1]
-        search = location.lstrip()
+        search = components['arguments'].split('!xkcd ')[1].lstrip()
 
         if len(search) < 1:
             raise Exception('No argument given')
