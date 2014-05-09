@@ -26,6 +26,7 @@ def xkcd(components):
             response = data[0] + " - http://xkcd.com/" + str(data[2]) + "\r\n" + data[1]
         else:
             response = "No comic found!"
+    return response.encode('utf8')
 
 
 def get_comic(comic_num):
