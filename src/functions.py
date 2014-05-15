@@ -22,7 +22,7 @@ def get_datetime():
 
     now = datetime.datetime.now()
     dt['time'] = now.strftime('%H:%M')
-    dt['date'] = now.strftime('%d-%m-%Y')
+    dt['date'] = now.strftime('%Y-%m-%d')
 
     return dt
 

@@ -81,7 +81,6 @@ def build_comics_db():
                 except:
                     return "Error getting latest comic!"
                 data = json.load(response)
-            print data["title"], data["alt"], data["num"]
             cur.execute("""INSERT INTO Comics (title, alt, comic_num) VALUES (?,?,?)""", (
                 h.unescape(data["title"]), h.unescape(data["alt"]), data["num"]))
     cur.close()
