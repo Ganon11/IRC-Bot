@@ -15,13 +15,13 @@ def get_sender(msg):
 def get_datetime():
     '''Returns a dictionary containing the date and time
 
-    dt['time'] - contains current time in hh:mm format(24 hrs)
-    dt['date'] - contains current date as dd-mm-yyyy format
+    dt['time'] - contains current time in hh:mm:ss format(24 hrs)
+    dt['date'] - contains current date as yyyy-mm-dd format
     '''
     dt = {}
 
     now = datetime.datetime.now()
-    dt['time'] = now.strftime('%H:%M')
+    dt['time'] = now.strftime('%H:%M:%S')
     dt['date'] = now.strftime('%Y-%m-%d')
 
     return dt
