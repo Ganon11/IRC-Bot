@@ -22,11 +22,10 @@ def join(socket, components): # !join <#channel>+
 
             for channel in arg_channels:
                 channel = channel.strip('\r')
-                if channel not in config.channels and len(channel) and \
-                '#' == channel[0] \
-                and -1 == channel.find(' '): # valid channel name
+                if len(channel) and '#' == channel[0] and -1 == channel.find(' '): # valid channel name
                     join_chans.append(channel)
-                    config.channels.append(channel)
+                    if channel not in config.channels:
+                        config.channels.append(channel)
 
             if len(join_chans):
                 response.append(','.join(join_chans))
