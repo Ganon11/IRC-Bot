@@ -18,8 +18,11 @@ owner_email = {
 
 # server to connect to
 server = 'chat.freenode.net'
+#server = 'basileia2.noip.me'
 # server's port
 port = 6667
+#port = 19546
+#pword = "WorfBot:hunter2"
 
 # bot's nicknames
 nicks = list(set(['WorfBot', 'WorfBot2', 'WorfBot3']))

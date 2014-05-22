@@ -26,19 +26,18 @@ ESVAPI_DEFAULT_PARAMS = {
 }
 
 def MakeEsvApiRequest(data):
-	LoadApiKeys()
+	LoadApiKey()
 	par = ESVAPI_DEFAULT_PARAMS
 	par['key'] = ESVAPI_KEY
 	par['passage'] = data
 	return requests.get(ESVAPI_URL, params=par)
 
-def LoadApiKeys():
+def LoadApiKey():
 	global ESVAPI_KEY
 	if ESVAPI_KEY == '':
 		api_key_file = open(os.path.join(os.getcwd(), '..', 'files', 'esvapi_key.dat'))
 		ESVAPI_KEY = api_key_file.read()
 		api_key_file.close()
-
 
 def RemoveExtraWhitespace(text):
 	text = text.replace('\r', '')
