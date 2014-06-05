@@ -1,6 +1,7 @@
 import heretic_functions
 
 def heretics(components):
+	heretic_functions.build_heretics_db()
 	response = ''
 	count = 5
 	try:

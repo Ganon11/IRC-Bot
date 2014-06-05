@@ -4,16 +4,17 @@ import sqlite3
 
 heretic_pattern = re.compile(r"(\w+) is a heretic", re.IGNORECASE)
 non_heretic_pattern = re.compile(r"(\w+) is not a heretic", re.IGNORECASE)
+db_file_path = os.path.join(os.getcwd(), '..', 'files', 'heretics.db')
 
 def build_heretics_db():
-	conn = sqlite3.connect(os.path.join(os.getcwd(), '..', '..', 'files', 'heretics.db'))
+	conn = sqlite3.connect(db_file_path)
 	cur = conn.cursor()
 	cur.execute("""CREATE TABLE IF NOT EXISTS Heretics (name text PRIMARY KEY, count integer)""")
 	conn.commit()
 	conn.close()
 
 def add_heretic(target):
-	conn = sqlite3.connect(os.path.join(os.getcwd(), '..', '..', 'files', 'heretics.db'))
+	conn = sqlite3.connect(db_file_path)
 	cur = conn.cursor()
 	data = (target,)
 	cur.execute("""SELECT * FROM Heretics WHERE name=?""", data)
@@ -28,7 +29,7 @@ def add_heretic(target):
 	conn.close()
 
 def remove_heretic(target):
-	conn = sqlite3.connect(os.path.join(os.getcwd(), '..', '..', 'files', 'heretics.db'))
+	conn = sqlite3.connect(db_file_path)
 	cur = conn.cursor()
 	data = (target,)
 	cur.execute("""SELECT * FROM Heretics WHERE name=?""", data)
@@ -44,7 +45,7 @@ def remove_heretic(target):
 
 def get_heretics(count=5):
 	responses = ['Top heretics of #reddit-Christianity']
-	conn = sqlite3.connect(os.path.join(os.getcwd(), '..', '..', 'files', 'heretics.db'))
+	conn = sqlite3.connect(db_file_path)
 	cur = conn.cursor()
 	cur.execute("""SELECT * FROM Heretics ORDER BY count DESC""")
 	results = cur.fetchall()
