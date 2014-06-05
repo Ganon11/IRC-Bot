@@ -49,7 +49,7 @@ def get_heretics(count=5):
 	cur = conn.cursor()
 	cur.execute("""SELECT * FROM Heretics ORDER BY count DESC""")
 	results = cur.fetchall()
-	for i in range(count - 1):
+	for i in range(count):
 		if (i < len(results)):
 			responses.append('   #%(num)s %(name)s (%(count)s denunciations)' % {
 				'num': i + 1,
