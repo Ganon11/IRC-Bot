@@ -9,6 +9,8 @@ def build_heretics_db():
 	conn = sqlite3.connect(os.path.join(os.getcwd(), '..', '..', 'files', 'heretics.db'))
 	cur = conn.cursor()
 	cur.execute("""CREATE TABLE IF NOT EXISTS Heretics (name text PRIMARY KEY, count integer)""")
+	conn.commit()
+	conn.close()
 
 def add_heretic(target):
 	conn = sqlite3.connect(os.path.join(os.getcwd(), '..', '..', 'files', 'heretics.db'))
