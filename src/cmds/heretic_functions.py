@@ -9,45 +9,31 @@ db_file_path = os.path.join(os.getcwd(), '..', 'files', 'heretics.db')
 def build_heretics_db():
 	conn = sqlite3.connect(db_file_path)
 	cur = conn.cursor()
-	cur.execute("""CREATE TABLE IF NOT EXISTS Heretics (name text PRIMARY KEY, count integer)""")
+	cur.execute("""CREATE TABLE IF NOT EXISTS Heretics (username text, heretic text, vote integer, CONSTRAINT PK_Heretics PRIMARY KEY (username, heretic))""")
 	conn.commit()
 	conn.close()
 
-def add_heretic(target):
+def change_heretic(user, target, vote):
 	conn = sqlite3.connect(db_file_path)
 	cur = conn.cursor()
-	data = (target,)
-	cur.execute("""SELECT * FROM Heretics WHERE name=?""", data)
+	data = (user, target)
+	cur.execute("""SELECT * FROM Heretics WHERE username=? AND heretic=?""", data)
 	result = cur.fetchone()
 	if result is None:
-		cur.execute("""INSERT INTO Heretics VALUES (?,1)""", data)
+		data = (user, target, vote)
+		cur.execute("""INSERT INTO Heretics VALUES (?,?,?)""", data)
 	else:
-		data = (result[1] + 1, target)
-		cur.execute("""UPDATE Heretics SET count=? WHERE name=?""", data)
-
-	conn.commit()
-	conn.close()
-
-def remove_heretic(target):
-	conn = sqlite3.connect(db_file_path)
-	cur = conn.cursor()
-	data = (target,)
-	cur.execute("""SELECT * FROM Heretics WHERE name=?""", data)
-	result = cur.fetchone()
-	if result is None:
-		pass
-	else:
-		data = (result[1] - 1, target)
-		cur.execute("""UPDATE Heretics SET count=? WHERE name=?""", data)
+		data = (vote, user, target)
+		cur.execute("""UPDATE Heretics SET vote=? WHERE username=? AND heretic=?""", data)
 
 	conn.commit()
 	conn.close()
 
 def get_heretics(count=5):
-	responses = ['Top heretics of #reddit-Christianity']
+	responses = ['Top Heretics']
 	conn = sqlite3.connect(db_file_path)
 	cur = conn.cursor()
-	cur.execute("""SELECT * FROM Heretics ORDER BY count DESC""")
+	cur.execute("""SELECT heretic, SUM(vote) AS score FROM Heretics GROUP BY heretic ORDER BY score DESC""")
 	results = cur.fetchall()
 	for i in range(count):
 		if (i < len(results)):
@@ -61,3 +47,12 @@ def get_heretics(count=5):
 
 	conn.close()
 	return '\r\n'.join(responses)
+
+if __name__ == '__main__':
+	build_heretics_db()
+	change_heretic('mstark', 'Arius', 1)
+	print get_heretics()
+	change_heretic('sprherowithnopwr', 'Arius', 1)
+	print get_heretics()
+	change_heretic('mstark', 'Arius', 1)
+	print get_heretics()
