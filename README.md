@@ -5,7 +5,7 @@ To start it just `cd` to the `src` directory and type `./ircbot.py`, although
 before using the bot it's recommended to check the config first.
 
 The bot can handle multiple channels at a time, also if you want to have a 
-_private_ discussion it can be queried (`/query PPyBot`).
+_private_ discussion it can be queried (`/query WorfBot`).
 
 IRC Protocol reference: [RFC 1459](http://www.irchelp.org/irchelp/rfc/rfc.html
 "IRC Protocol")
@@ -16,12 +16,40 @@ Sphinx docs to come
 
 Commands
 ========
+* `!about`
+    * a few words about this software
+* `!bible <Bible Reference>`
+    * quotes the ESV bible in the channel
 * `!google <search term>`
     * returns a link and a short description of the first Google search result
     * see Dependencies: _!google_
+* `!help`
+    * list all available commands
+* `!heretics [count]`
+    * list top 5 (or [count]) known heretics
+* `!hono(u)r <phrase>`
+    * Checks whether <phrase> is honorable or not
+* `!mball`
+    * the famous Magic Ball
+* `!uptime`
+    * shows current uptime of the bot
+* `!weather <city>` or `!weather <city>, <state or country>`
+    * replies some info related to the current weather conditions from the
+      given location
 * `!wiki <search term>`
     * replies a wikipedia link for \<search term\> along with the first 
     paragraph from the page
+* `!xkcd [<number>, <search term>]`
+    * If a number is given, retrieves a link to and the alt-text of the specified XKCD comic
+    * Otherwise, searches for the search term, and returns a link to and alt-text of a relevant XKCD comic
+* `!add <word>:[Honorable,Dishonorable]`
+    * specifies <word> as Honorable or Dishonorable
+* `!channels`
+    * replies a list containing the channels the bot is connected to
+    * see Config: _owner_
+* `!join <#channel >+`
+    * the bot joins the given channels, minimum one channel name must be supplied
+    * see Config: _owner_
 * `!quit [#channel ]+`
     * disconnects the bot from the given list of channels
     * if no arguments are given, all connected channels are disconnected
@@ -30,41 +58,16 @@ Commands
     * if no channel is "alive" then the bot closes
     * Example: `!quit #foo #bar` - quits from #foo and #bar
     * see Config: _owner_, _channels_
-* `!join <#channel >+`
-    * the bot joins the given channels, minimum one channel name must be supplied
-    * see Config: _owner_
-* `!channels`
-    * replies a list containing the channels the bot is connected to
-    * see Config: _owner_
-* `!help`
-    * list all available commands
-* `!answer`
-    * you'll find the answer through this command
-* `!weather <city>` or `!weather <city>, <state or country>`
-    * replies some info related to the current weather conditions from the
-      given location
-* `!about`
-    * a few words about this software
-* `!mball`
-    * the famous Magic Ball
-* `!uptime`
-    * shows current uptime of the bot
-* `!so <search term>`
-    * replies the first question's title and URL from the search result
-    * see Dependencies: _!so_
-* `!twitter [username]`
-    * replies the latest tweet(along with the tweet date) for the username provided
-    * the date will have the following format: DD/MM/YYYY HH:MM
-    * if no username is provided then the bot will try to get the latest tweet
-      for the IRC-user who issued the command
 
 Total: _13_ commands
 
 Auto-commands
 =============
-* `email_alert` - the bot sends an email to the owner when somebody talks to him
+* `add_heretic` - Listens to people being called heretics and takes note
+* `remove_heretic` - Listens to people being called non-heretics and takes note
+* `subreddits` - Provides a full link to any mentioned subreddits.
 
-Total: _1_ auto-command
+Total: _3_ auto-commands
 
 Adding commands
 ===============
@@ -116,16 +119,14 @@ See `src/config.py`:
 
 Dependencies
 ============
-* `!weather`, `!twitter` and `!wiki` module depends on
+* `!bible`, `!weather`, and `!wiki` module depends on
   [BeautifulSoup](http://www.crummy.com/software/BeautifulSoup/ "BeautifulSoup")
-    * `!weather` and `!twitter` depends on _BeautifulStoneSoup_ (XML)
-    * `!wiki` depends on _BeautifulSoup_ (HTML)
+    * `!weather` depends on _BeautifulStoneSoup_ (XML)
+    * `!bible` and `!wiki` depends on _BeautifulSoup_ (HTML)
 * `!google` module depends on 
 [Google Custom Search API](http://code.google.com/p/google-api-python-client/ "Custom Search API")
     * before using the bot please see the 
 [installation page](http://code.google.com/p/google-api-python-client/wiki/Installation "Custom Search API Installation")
-* `!so` module depends on 
-[StackExchange API](http://stackapps.com/questions/198/py-stackexchange-an-api-wrapper-for-python "Py-StackExchange")
 
 License
 =======
