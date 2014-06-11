@@ -31,7 +31,23 @@ def change_heretic(user, target, vote):
 	conn.commit()
 	conn.close()
 
+def get_heretic(target):
+	conn = sqlite3.connect(db_file_path)
+	cur = conn.cursor()
+	data = (target,)
+	cur.execute("""SELECT SUM(vote) AS score FROM Heretics WHERE heretic=?""", data)
+	result = cur.fetchone()
+	count = 0
+	try:
+		count = int(result[0])
+	except:
+		pass
+	conn.close()
+	return count
+
 def get_heretics(count=5):
+	if count > 10:
+		count = 10
 	responses = ['Top Heretics']
 	conn = sqlite3.connect(db_file_path)
 	cur = conn.cursor()

@@ -50,6 +50,7 @@ cmds = {
         'about',
         'bible',
         'help',
+        'heretic',
         'heretics',
         'honor',
         'honour',
