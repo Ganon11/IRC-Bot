@@ -4,7 +4,5 @@ logs/
 *.log
 .coverage
 htmlcov/
-*.db
 venv/
-files/comics.db
-*.db
+files/*.db
