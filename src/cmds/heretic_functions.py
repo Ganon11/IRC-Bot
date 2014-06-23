@@ -34,8 +34,8 @@ def change_heretic(user, target, vote):
 def get_heretic(target):
 	conn = sqlite3.connect(db_file_path)
 	cur = conn.cursor()
-	data = (target,)
-	cur.execute("""SELECT SUM(vote) AS score FROM Heretics WHERE heretic=?""", data)
+	data = (target.lower(),)
+	cur.execute("""SELECT SUM(vote) AS score FROM Heretics AS h WHERE LOWER(h.heretic) LIKE LOWER(?)""", data)
 	result = cur.fetchone()
 	count = 0
 	try:
