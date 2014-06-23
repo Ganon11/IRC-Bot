@@ -19,14 +19,14 @@ def change_heretic(user, target, vote):
 	conn = sqlite3.connect(db_file_path)
 	cur = conn.cursor()
 	data = (user, target)
-	cur.execute("""SELECT * FROM Heretics WHERE username=? AND heretic=?""", data)
+	cur.execute("""SELECT * FROM Heretics AS h WHERE LOWER(h.username) LIKE LOWER(?) AND LOWER(h.heretic) LIKE LOWER(?)""", data)
 	result = cur.fetchone()
 	if result is None:
 		data = (user, target, vote)
 		cur.execute("""INSERT INTO Heretics VALUES (?,?,?)""", data)
 	else:
 		data = (vote, user, target)
-		cur.execute("""UPDATE Heretics SET vote=? WHERE username=? AND heretic=?""", data)
+		cur.execute("""UPDATE Heretics SET vote=? WHERE username=? AND LOWER(heretic) LIKE LOWER(?)""", data)
 
 	conn.commit()
 	conn.close()
