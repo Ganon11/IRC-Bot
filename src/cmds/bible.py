@@ -26,7 +26,7 @@ ESVAPI_DEFAULT_PARAMS = {
    'include-short-copyright': 'false',
    'line-length': 1000000 # Arbitrarily high number
 }
-USAGE_STRING = 'Usage: %sbible <passage specifier' % cmd_char
+USAGE_STRING = 'Usage: %sbible <passage specifier>' % cmd_char
 
 def MakeEsvApiRequest(data):
    LoadApiKey()
