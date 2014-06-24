@@ -1,6 +1,9 @@
 import config
 from functions import is_registered
 
+CMD_STRING = config.cmd_char + 'join ' # Note the trailing space!
+USAGE_STRING = 'Usage: %sjoin <#channel >+' % config.cmd_char
+
 def join(socket, components): # !join <#channel>+
     '''Returns a string for joining the given channel(s)
 
@@ -8,7 +11,7 @@ def join(socket, components): # !join <#channel>+
     '''
     response = ''
 
-    join_command = components['arguments'].split('!join ') # notice the space
+    join_command = components['arguments'].split(CMD_STRING) # notice the space
 
     if 2 == len(join_command):
 
@@ -37,6 +40,6 @@ def join(socket, components): # !join <#channel>+
         else:
             response = 'This command can be run only by the owners!'
     else:
-        response = 'Usage: !join <#channel >+'
+        response = USAGE_STRING
 
     return response

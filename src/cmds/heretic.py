@@ -1,10 +1,13 @@
+from config import cmd_char
 import heretic_functions
+
+CMD_STRING = cmd_char + 'heretic ' # Note the trailing space!
 
 def heretic(components):
 	response = ''
 	target = ''
 	try:
-		target = components['arguments'].split('!heretic ')[1]
+		target = components['arguments'].split(CMD_STRING)[1]
 	except:
 		target = components['sender']
 	count = heretic_functions.get_heretic(target)
@@ -12,5 +15,5 @@ def heretic(components):
 	return response.encode('utf8')
 
 if __name__ == '__main__':
-	comp = { 'arguments': '!heretic', 'sender': 'mstark' }
+	comp = { 'arguments': cmd_char + 'heretic', 'sender': 'mstark' }
 	print heretic(comp)

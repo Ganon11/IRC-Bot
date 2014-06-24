@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 from BeautifulSoup import BeautifulStoneSoup
+from config import cmd_char
 import urllib
+
+CMD_STRING = cmd_char + 'weather ' # note the trailing space!
+USAGE_STRING = 'Usage: %sweather <city>, <state>' % cmd_char
 
 def weather(components): # !weather <city> or !weather <city>, <state or country>
     '''Returns a string containing the weather conditions from a location'''
@@ -9,13 +13,14 @@ def weather(components): # !weather <city> or !weather <city>, <state or country
     conditions = ''
 
     try:
-        location = components['arguments'].split('!weather ')[1]
+        args = components['arguments'].split(CMD_STRING)
+        location = args[1]
         location = location.lstrip()
 
         if len(location) < 1:
             raise Exception('Empty location!')
     except:
-        response = 'Usage: !weather <city>, <state>'
+        response = USAGE_STRING
     else:
         # Remove repeated spaces
         location = ((location.replace(' ', '<>')).replace('><', '')).replace('<>', ' ')
@@ -23,9 +28,7 @@ def weather(components): # !weather <city> or !weather <city>, <state or country
         if type(conditions) == type(str()):
             response = conditions
         else:
-            response = conditions['location'] + ' - ' + conditions['temp'] + \
-                    ' - ' + conditions['weather'] + ' - Provided by: ' + \
-                    'Weather Underground, Inc.'
+            response = '%(loc)s - %(temp)s - %(cond)s - Provided by: Weather Underground, Inc.' % { 'loc': conditions['location'], 'temp': conditions['temp'], 'cond': conditions['weather'] }
 
     return response.encode('utf8')
 

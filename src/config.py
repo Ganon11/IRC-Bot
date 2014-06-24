@@ -18,11 +18,8 @@ owner_email = {
 
 # server to connect to
 server = 'chat.freenode.net'
-#server = 'basileia2.noip.me'
 # server's port
 port = 6667
-#port = 19546
-#pword = "WorfBot:hunter2"
 
 # bot's nicknames
 nicks = list(set(['WorfBot', 'WorfBot2', 'WorfBot3']))
@@ -34,6 +31,8 @@ channels = list(set([
     '#reddit-Christianity',
     '#mstark',
 ]))
+
+cmd_char = '!'
 
 cmds = {
     # core commands list, these commands will be run in the same thread as the bot

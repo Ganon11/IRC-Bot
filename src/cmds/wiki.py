@@ -1,12 +1,15 @@
 from BeautifulSoup import BeautifulSoup
+from config import cmd_char
 import urllib2
+
+CMD_STRING = cmd_char + 'wiki ' # Note the trailing space!
 
 def wiki(components): # !wiki <search term>
     '''Returns a wiki link and the first paragraph of the page'''
 
     main_page = 'http://en.wikipedia.org/wiki/Main_Page'
 
-    wlink = components['arguments'].split('!wiki ') # notice the trailing space
+    wlink = components['arguments'].split(CMD_STRING) # notice the trailing space
     if 1 == len(wlink): # no search term given, the Main_Page is "displayed"
         response = main_page
     else:

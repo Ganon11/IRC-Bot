@@ -1,6 +1,8 @@
 import config
 from functions import *
 
+CMD_STRING = config.cmd_char + 'quit ' # note the trailing space!
+
 def quit(socket, components): # !quit [chan_name]+ -> PART #channel
     '''Returns a string for quitting the bot from a channel(or more) or from all
     channels if no arguments are supplied
@@ -21,7 +23,7 @@ def quit(socket, components): # !quit [chan_name]+ -> PART #channel
             response = []
             response.append('PART')
 
-            quit_command = components['arguments'].split('!quit ')
+            quit_command = components['arguments'].split(CMD_STRING)
 
             if 2 == len(quit_command): # arguments supplied
                 arg_channels = quit_command[1].lstrip().split(' ')

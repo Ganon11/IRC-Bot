@@ -44,7 +44,7 @@ def run(socket, channels, cmds, nick):
                     response.append(':' + components['arguments'])
 
                 elif 'PRIVMSG' == components['action']:
-                    if '.' == components['arguments'][0] or '!' == components['arguments'][0]:
+                    if config.cmd_char == components['arguments'][0]:
                         # a command from a user only makes sense if it starts
                         # with an exclamation mark
 

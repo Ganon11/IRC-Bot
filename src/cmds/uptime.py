@@ -2,6 +2,8 @@ import config
 import time
 import datetime
 
+CMD_STRING = config.cmd_char + 'uptime'
+
 def uptime(components):
     '''Computes the uptime of the bot
 
@@ -9,7 +11,7 @@ def uptime(components):
     '''
     response = ''
 
-    if components['arguments'] == '!uptime':
+    if components['arguments'] == CMD_STRING:
         # the user sent just the command, no garbage
         end_time = time.time()
         uptime = end_time - config.start_time

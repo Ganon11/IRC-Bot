@@ -1,22 +1,23 @@
-import urllib
-import json
-import sqlite3
+from config import cmd_char
 import HTMLParser
+import json
 import os
+import sqlite3
+import urllib
 
+CMD_STRING = cmd_char + 'xkcd ' # Note the trailing space!
+USAGE_STRING = 'Usage: %sxkcd <[number] OR [search term]>'
 
 def xkcd(components):
     ''' Returns xkcd comic data given a user's search (comic number/name or search term)
     '''
     build_comics_db()  # first time this is run could take awhile...
     response = ''
-    try:
-        search = components['arguments'].split('!xkcd ')[1].lstrip()
+    args = components['arguments'].split(CMD_STRING)
+    if len(args) == 1:
+        return USAGE_STRING
+    search = args[1].lstrip()
 
-        if len(search) < 1:
-            raise Exception('No argument given')
-    except:
-        response = 'Usage: !xkcd <comic or search term>'
     if search.isdigit():
         response = get_comic(search)
     else:

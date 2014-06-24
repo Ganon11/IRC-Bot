@@ -1,9 +1,12 @@
 from bs4 import BeautifulSoup
+from config import cmd_char
 import os
 import requests
 
+CMD_STRING = cmd_char + 'define ' # note the trailing space!
 DICTIONARYAPI_URL = 'http://www.dictionaryapi.com/api/v1/references/collegiate/xml/'
 DICTIONARYAPI_KEY = ''
+USAGE_STRING = 'Usage: %sdefine <term>' % cmd_char
 
 def MakeDictionaryApiRequest(data):
 	LoadApiKey()
@@ -19,7 +22,10 @@ def LoadApiKey():
 		api_key_file.close()
 
 def define(components):
-    phrase = components['arguments'].split('!define ')[1]
+	args = components['arguments'].split(CMD_STRING)
+	if len(args) == 1:
+		return USAGE_STRING
+    phrase = args[1]
     soup = BeautifulSoup(MakeDictionaryApiRequest(phrase).text)
     response = []
     #print soup.entry_list.entry

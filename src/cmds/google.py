@@ -1,4 +1,8 @@
 from apiclient.discovery import build
+from config import cmd_char
+
+CMD_STRING = cmd_char + 'google ' # Note the trailing space!
+USAGE_STRING = 'Usage: %sgoogle <search term>' % cmd_char
 
 def google(components): # !google <search term>
     '''Returns the link and the description of the first result from a google
@@ -7,7 +11,7 @@ def google(components): # !google <search term>
     response = ''
 
     # notice the trailing space
-    terms = components['arguments'].split('!google ')
+    terms = components['arguments'].split(CMD_STRING)
 
     if 2 == len(terms) and 1 <= len(terms[1].lstrip()):
         service = build("customsearch", "v1",
@@ -26,6 +30,6 @@ def google(components): # !google <search term>
             response = 'Not found: ' + terms[1]
 
     else:
-        response = 'Usage: !google <search term>'
+        response = USAGE_STRING
 
     return str(response.encode('utf8'))
