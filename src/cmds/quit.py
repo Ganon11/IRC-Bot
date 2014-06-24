@@ -40,13 +40,13 @@ def quit(socket, components): # !quit [chan_name]+ -> PART #channel
             if len(leave):
                response.append(','.join(leave))
                response.append('\r\nPRIVMSG ' + components['action_args'][0] + ' :Left: {0}'.format(', '.join(leave)))
-               else:
-                  response = 'Invalid channel names!'
+            else:
+               response = 'Invalid channel names!'
 
-            else: # no arguments supplied, quitting all channels
-               response.append(','.join(config.channels))
-               config.channels[:] = []
+         else: # no arguments supplied, quitting all channels
+            response.append(','.join(config.channels))
+            config.channels[:] = []
       else:
-         response = 'This command can be run only by the owners!'
+         response = 'Fool, I\'m too legit to quit!'
 
    return response
