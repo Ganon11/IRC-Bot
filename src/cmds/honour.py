@@ -2,7 +2,7 @@ from config import cmd_char
 import honor_functions
 
 CMD_STRING = cmd_char + 'honour ' # Note the trailing space!
-USAGE_STRING = 'Usage: %shonour <phrase>'
+USAGE_STRING = 'Usage: %shonour <phrase>' % cmd_char
 
 def honour(components):
    args = components['arguments'].split(CMD_STRING)
