@@ -6,7 +6,7 @@ import sqlite3
 import urllib
 
 CMD_STRING = cmd_char + 'xkcd ' # Note the trailing space!
-USAGE_STRING = 'Usage: %sxkcd <[number] OR [search term]>'
+USAGE_STRING = 'Usage: %sxkcd <[number] OR [search term]>' % cmd_char
 
 def xkcd(components):
    ''' Returns xkcd comic data given a user's search (comic number/name or search term)
