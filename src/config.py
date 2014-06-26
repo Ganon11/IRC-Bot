@@ -62,7 +62,6 @@ cmds = {
    'auto': list(set([
       'add_heretic',
       'remove_heretic',
-      'subreddits',
    ])),
 }
 
