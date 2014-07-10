@@ -7,10 +7,10 @@ USAGE_STRING = 'Usage: %sadd <term>:<Honorable or Dishonorable>' % config.cmd_ch
 
 def add(socket, components):
    if not components['sender'] in config.owner or not is_registered(socket, components['sender']):
-   return 'This command can be run only by the owners!'.encode('utf8')
+      return 'This command can be run only by the owners!'.encode('utf8')
    args = components['arguments'].split(CMD_STRING)
    if len(args) == 1: # Couldn't find terms
-   return USAGE_STRING
+      return USAGE_STRING
    terms = args[1].split(':')
    if len(terms) == 1: # Improper format
       return USAGE_STRING

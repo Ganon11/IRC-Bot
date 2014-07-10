@@ -2,7 +2,7 @@ eclipse:Dishonorable
 wasp:Dishonorable
 romulans:Dishonorable
 bacon:Honorable
-jesus:Honorable
+sweet tea:Honorable
 wasps:Dishonorable
 optimum:Dishonorable
 worfbot:Honorable
@@ -24,15 +24,17 @@ aragorn, son of arathorn:Honorable
 house of durasbot:Dishonorable
 captain picard:Honorable
 jean luc picard:Honorable
-aragorn:Honorable
+jesus:Honorable
 gimli, son of gloin:Honorable
 blood wine:Honorable
 house of duras:Dishonorable
 worf:Honorable
 commander riker:Honorable
+sweetened iced tea:Honorable
 duras:Dishonorable
 com:Dishonorable
 st. thomas aquinas:Honorable
 lwaxana troi:Dishonorable
+aragorn:Honorable
 jesus christ:Honorable
 durasbot:Dishonorable

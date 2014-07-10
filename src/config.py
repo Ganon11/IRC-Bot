@@ -12,7 +12,7 @@ owner = list(set([
 ]))
 
 # server to connect to
-server = 'chat.freenode.net'
+server = 'card.freenode.net'
 # server's port
 port = 6667
 
