@@ -44,6 +44,7 @@ cmds = {
    'user': list(set([
       'about',
       'bible',
+      'define',
       'help',
       'heretic',
       'heretics',
