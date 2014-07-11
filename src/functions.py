@@ -71,19 +71,22 @@ def is_registered(s, user_nick):
 
    Returns true if user_nick is registered and online, else False
    '''
-   s.send('PRIVMSG nickserv :info ' + user_nick + '\r\n')
+   # Doesn't work on FactSet's NickServ
+   # For now, assume the best
+   return True
+   # s.send('PRIVMSG nickserv :info ' + user_nick + '\r\n')
 
-   while True:
-      receive = s.recv(4096)
+   # while True:
+      # receive = s.recv(4096)
 
-      if 'NickServ' in receive: # this is the NickServ info response
-         if 'Last seen  : now' in receive: # user registered and online
-            return True
-         elif 'Information on' in receive: # wait for the response
-            # containing the information about the user
-            pass
-         else:
-            return False
+      # if 'NickServ' in receive: # this is the NickServ info response
+         # if 'Last seen  : now' in receive or '<< ONLINE >>' in receive: # user registered and online
+            # return True
+         # elif 'Information on' in receive: # wait for the response
+            # # containing the information about the user
+            # pass
+         # else:
+            # return False
 
 def get_nick(nicks):
    for nick in nicks:

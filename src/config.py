@@ -5,14 +5,11 @@ import logging
 
 # some commands can be executed only if the user's nick is found in this list
 owner = list(set([
-   'mstark',
-   'mstark|home',
-   'aletheist',
-   'aletheia',
+   'mstark'
 ]))
 
 # server to connect to
-server = 'chat.freenode.net'
+server = 'irc.pc.factset.com'
 # server's port
 port = 6667
 
@@ -21,14 +18,13 @@ nicks = list(set(['WorfBot', 'WorfBot2', 'WorfBot3']))
 # bot's real name
 real_name = 'WorfBot, son of MoghBot'
 
+cmd_char = '!'
+
 # channels to join on startup
 channels = list(set([
-   '#reddit-Christianity',
-   '#reddit-OrthodoxChristianity',
-   '#mstark',
+   '#StarTrek',
+   '#mstark'
 ]))
-
-cmd_char = '!'
 
 cmds = {
    # core commands list, these commands will be run in the same thread as the bot
@@ -37,13 +33,14 @@ cmds = {
       'add',
       'channels',
       'join',
-      'quit',
+      'quit'
    ])),
 
    # normal commands list, the ones that are accessible to any user
    'user': list(set([
       'about',
       'bible',
+      'define',
       'help',
       'heretic',
       'heretics',
@@ -61,7 +58,7 @@ cmds = {
    # action
    'auto': list(set([
       'add_heretic',
-      'remove_heretic',
+      'remove_heretic'
    ])),
 }
 
