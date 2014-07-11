@@ -1,3 +1,5 @@
+#!python
+# -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
 from config import cmd_char
 import os
@@ -30,15 +32,15 @@ def define(components):
 	if soup.entry_list.entry is None:
 		return 'No definition found'
 	response = []
-	response.append(phrase)
+	response.append('%(word)s (%(pron)s), %(pos)s' % { 'word': phrase, 'pron': soup.entry_list.entry.pr.text, 'pos': soup.entry_list.entry.fl.text })
 	index = 1
 	for d in soup.entry_list.entry.find('def').find_all('dt'):
 		response.append('%(num)d: %(def)s' % { 'num': index, 'def': d.text[1:] }) # There's a : at the beginning that I don't want.
 		index = index + 1
 		
-	return ('\r\n'.join(response)).encode('utf8')
+	return ('\r\n'.join(response)).encode('utf-8')
 
 if __name__ == '__main__':
 	comp = {}
-	comp['arguments'] = '!define mittelschmerz'
+	comp['arguments'] = '!define hypocrite'
 	print define(comp)
