@@ -1,3 +1,5 @@
+#!python
+# -*- coding: utf-8 -*-
 from BeautifulSoup import BeautifulSoup
 from config import cmd_char
 import urllib2
@@ -22,7 +24,7 @@ def wiki(components): # !wiki <search term>
 
    response = response + '\r\n' + get_paragraph(response)
 
-   return response.encode('utf8')
+   return response
 
 def get_paragraph(wlink):
    '''Gets the first paragraph from a wiki link'''
@@ -48,9 +50,9 @@ def get_paragraph(wlink):
          pos = msg.rfind('.')
          msg = msg[:pos]
 
-   return msg
+   return msg.encode('utf-8')
 
 if __name__ == "__main__":
    comp = {}
-   comp['arguments'] = '!wiki squick'
+   comp['arguments'] = '!wiki Einheitsübersetzung'
    print wiki(comp)
