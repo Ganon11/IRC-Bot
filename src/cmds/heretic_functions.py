@@ -2,9 +2,9 @@ import os
 import re
 import sqlite3
 
-singular_heretic_pattern = re.compile(r"(\w+) is a heretic", re.IGNORECASE)
+singular_heretic_pattern = re.compile(r"(\w+) is an? heretic", re.IGNORECASE)
 plural_heretic_pattern = re.compile(r"(\w+) are heretics", re.IGNORECASE)
-singular_non_heretic_pattern = re.compile(r"(\w+) is not a heretic", re.IGNORECASE)
+singular_non_heretic_pattern = re.compile(r"(\w+) is not a? heretic", re.IGNORECASE)
 plural_non_heretic_pattern = re.compile(r"(\w+) are not heretics", re.IGNORECASE)
 db_file_path = os.path.join(os.getcwd(), '..', 'files', 'heretics.db')
 
