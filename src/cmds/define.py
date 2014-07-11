@@ -37,6 +37,9 @@ def define(components):
 	for d in soup.entry_list.entry.find('def').find_all('dt'):
 		response.append('%(num)d: %(def)s' % { 'num': index, 'def': d.text[1:] }) # There's a : at the beginning that I don't want.
 		index = index + 1
+		if index > 5:
+			response.append('Results limited to 5 to reduce spamminess.')
+			break
 		
 	return ('\r\n'.join(response)).encode('utf-8')
 
