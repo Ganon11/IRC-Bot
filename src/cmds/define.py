@@ -27,6 +27,8 @@ def define(components):
 		return USAGE_STRING
 	phrase = args[1]
 	soup = BeautifulSoup(MakeDictionaryApiRequest(phrase).text)
+	if soup.entry_list.entry is None:
+		return 'No definition found'
 	response = []
 	response.append(phrase)
 	index = 1
@@ -38,5 +40,5 @@ def define(components):
 
 if __name__ == '__main__':
 	comp = {}
-	comp['arguments'] = '!define hypocrite'
+	comp['arguments'] = '!define mittelschmerz'
 	print define(comp)
