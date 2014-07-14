@@ -20,11 +20,16 @@ Commands
     * a few words about this software
 * `!bible <Bible Reference>`
     * quotes the ESV bible in the channel
+* `!define <Word>`
+    * Looks up a list of definitions for Word on dictionaryapi.com
 * `!google <search term>`
     * returns a link and a short description of the first Google search result
     * see Dependencies: _!google_
 * `!help`
     * list all available commands
+* `!heretic [Person]`
+    * Checks the number of denunciations the sender or [Person] has received
+    * _e.g. <@mstark> !heretic < WorfBot> mstark (6 denunciations)
 * `!heretics [count]`
     * list top 5 (or [count]) known heretics
 * `!hono(u)r <phrase>`
@@ -44,6 +49,7 @@ Commands
     * Otherwise, searches for the search term, and returns a link to and alt-text of a relevant XKCD comic
 * `!add <word>:[Honorable,Dishonorable]`
     * specifies <word> as Honorable or Dishonorable
+    * see Config: _owner_
 * `!channels`
     * replies a list containing the channels the bot is connected to
     * see Config: _owner_
@@ -64,8 +70,8 @@ Total: _13_ commands
 Auto-commands
 =============
 * `add_heretic` - Listens to people being called heretics and takes note
+* `auto_bible` - Listens for bible references in [square brackets] and quotes the ESV bible in response
 * `remove_heretic` - Listens to people being called non-heretics and takes note
-* `subreddits` - Provides a full link to any mentioned subreddits.
 
 Total: _3_ auto-commands
 
@@ -75,10 +81,10 @@ Adding commands
    end(without _!_)
 2. In `src/cmds/` directory you must create a file named after your command
 3. Into the newly created file you must define a function named after your
-   command that takes one parameter, this parameter will contain the command
-   components sent by the user, the function must return either a 
-   message(string) to be sent on the channel, either a list, first item being a
-   command(other than PRIVMSG which is added automatically if needed) and the 
+   command that takes one parameter. This parameter will contain the command
+   components sent by the user. The function must return either a 
+   message (string) to be sent on the channel, or a list, first item being a
+   command (other than PRIVMSG which is added automatically if needed) and the 
    second being the command's arguments.
 
 E.g.:
@@ -127,6 +133,8 @@ Dependencies
 [Google Custom Search API](http://code.google.com/p/google-api-python-client/ "Custom Search API")
     * before using the bot please see the 
 [installation page](http://code.google.com/p/google-api-python-client/wiki/Installation "Custom Search API Installation")
+* `!bible`, `auto_bible`, etc. depend on customized versions of [python-bible](https://github.com/Ganon11/python-bible) and [python-scriptures](https://github.com/Ganon11/python-scriptures)
+    * all credit for creation of these modules belong to [jasford](https://github.com/jasford/python-bible) and [davisd](https://github.com/davisd/python-scriptures), respectively
 
 License
 =======
