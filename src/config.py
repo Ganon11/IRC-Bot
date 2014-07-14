@@ -58,7 +58,8 @@ cmds = {
    # action
    'auto': list(set([
       'add_heretic',
-      'remove_heretic'
+      'auto_bible',
+      'remove_heretic',
    ])),
 }
 
