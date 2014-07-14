@@ -9,9 +9,13 @@ def auto_bible(components):
    matches = PASSAGE_PATTERN.findall(components['arguments'])
    refs = []
    for m in matches:
-      refs.append(scriptures.extract(m)[0])
+      new_ref = scriptures.extract(m)
+      if len(new_ref) == 1:
+         refs.append(new_ref[0])
+
    if len(refs) == 0:
       return
+
    response = ''
    verse_length = 0
    for r in refs:
@@ -30,5 +34,5 @@ def auto_bible(components):
 
 if __name__ == '__main__':
    comp = {}
-   comp['arguments'] = "Blah blah blah John 3:16 blah blah Micah 6:8 blah."
+   comp['arguments'] = "[Not a bible ref] [John 3:16]"
    print auto_bible(comp)
