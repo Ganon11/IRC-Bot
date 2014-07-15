@@ -47,6 +47,10 @@ def RemoveExtraWhitespace(text):
    text = text.replace(' ', '<>')
    text = text.replace('><', '')
    text = text.replace('<>', ' ')
+   text = re.sub(r'<h\d(?: \w+="[\w\d\.]+")+>.+?</h\d>', '', text)
+   text = re.sub(r'<p(?: \w+="[\w\d\.]+")+>', '', text)
+   text = re.sub(r'</p>', '', text)
+   text = re.sub(r'<span(?: \w+="[\w\d\.]+")+>(.+?)</span>', r'\1', text)
    return text
 
 def GetPassage(verse):
@@ -87,13 +91,12 @@ def MakeBiblesRequest(data, version=None):
       if re.search(r'^[a-z]+-', version) is None:
          version = 'eng-' + version
       par['version'] = version
-   print par
    return requests.get(BIBLES_URL, params=par, auth=requests.auth.HTTPBasicAuth(BIBLES_KEY, 'X'))
 
 def LoadBiblesKey():
    global BIBLES_KEY
    if BIBLES_KEY == '':
-      api_key_file = open(os.path.join(os.getcwd(), '..', '..', 'files', 'bibles_org_api_key.dat'))
+      api_key_file = open(os.path.join(os.getcwd(), '..', 'files', 'bibles_org_api_key.dat'))
       BIBLES_KEY = api_key_file.read()
       api_key_file.close()
 
@@ -102,19 +105,15 @@ def GetPassage2(verse):
    passages = json.loads(MakeBiblesRequest(passageSpec, verse[5]).text)['response']['search']['result']['passages']
    verses = []
    if len(passages) > 0:
-      text = passages[0]['text']
-      text = text.replace('\n', '')
-      text = re.sub(r'<h\d(?: \w+="[\w\d\.]+")+>.+?</h\d>', '', text)
-      text = re.sub(r'<p(?: \w+="[\w\d\.]+")+>', '', text)
-      text = re.sub(r'</p>', '', text)
-      text = re.sub(r'<span(?: \w+="[\w\d\.]+")+>(.+?)</span>', r'\1', text)
+      text = RemoveExtraWhitespace(passages[0]['text'])
       verses = re.split(r'<sup(?: \w+="[\w\d\.-]+")+>[\d-]+</sup>', text)
       verses = [ x for x in verses if x != '' ]
 
    return '\r\n'.join(verses).encode('utf-8')
 
 if __name__ == "__main__":
-   text = 'John 3:16-17 CEV'
+   text = '1 Maccabees 1:1 KJVA'
    verse = scriptures.extract(text)
+   print verse
    result = GetPassage2(verse[0])
    print result
