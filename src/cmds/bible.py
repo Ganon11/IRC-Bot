@@ -35,7 +35,7 @@ def bible(components):
          'spec': scriptures.reference_to_string(r[0], r[1], r[2], r[3], r[4]),
          'verses': vs
       }
-   return response.encode('utf-8')
+   return response
 
 if __name__ == "__main__":
    comp = {}

@@ -30,9 +30,9 @@ def auto_bible(components):
          'spec': scriptures.reference_to_string(r[0], r[1], r[2], r[3], r[4]),
          'verses': vs
       }
-   return response.encode('utf-8')
+   return response
 
 if __name__ == '__main__':
    comp = {}
    comp['arguments'] = "[Not a bible ref] [John 3:16]"
-   print auto_bible(comp).encode('utf-8')
+   print auto_bible(comp)

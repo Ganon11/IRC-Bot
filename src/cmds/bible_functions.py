@@ -47,10 +47,6 @@ def RemoveExtraWhitespace(text):
    text = text.replace(' ', '<>')
    text = text.replace('><', '')
    text = text.replace('<>', ' ')
-   text = re.sub(r'<h\d(?: \w+="[\w\d\.]+")+>.+?</h\d>', '', text)
-   text = re.sub(r'<p(?: \w+="[\w\d\.]+")+>', '', text)
-   text = re.sub(r'</p>', '', text)
-   text = re.sub(r'<span(?: \w+="[\w\d\.]+")+>(.+?)</span>', r'\1', text)
    return text
 
 def GetPassage(verse):
@@ -105,14 +101,21 @@ def GetPassage2(verse):
    passages = json.loads(MakeBiblesRequest(passageSpec, verse[5]).text)['response']['search']['result']['passages']
    verses = []
    if len(passages) > 0:
-      text = RemoveExtraWhitespace(passages[0]['text'])
+      text = passages[0]['text'].replace('\r', '').replace('\n', '')
+      text = re.sub(r'<h1(?: \w+="[\w\d\.]+")+>.+?</h1>', '', text)
+      text = re.sub(r'<h2(?: \w+="[\w\d\.]+")+>.+?</h2>', '', text)
+      text = re.sub(r'<h3(?: \w+="[\w\d\.]+")+>.+?</h3>', '', text)
+      text = re.sub(r'<h4(?: \w+="[\w\d\.]+")+>.+?</h4>', '', text)
+      text = re.sub(r'<p(?: \w+="[\w\d\.]+")+>', '', text)
+      text = re.sub(r'</p>', '', text)
+      text = re.sub(r'<span(?: \w+="[\w\d\.]+")+>(.+?)</span>', r'\1', text)
       verses = re.split(r'<sup(?: \w+="[\w\d\.-]+")+>[\d-]+</sup>', text)
       verses = [ x for x in verses if x != '' ]
 
    return '\r\n'.join(verses).encode('utf-8')
 
 if __name__ == "__main__":
-   text = '1 Maccabees 1:1 KJVA'
+   text = 'John 3:16'
    verse = scriptures.extract(text)
    print verse
    result = GetPassage2(verse[0])
