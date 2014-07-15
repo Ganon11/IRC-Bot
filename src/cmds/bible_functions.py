@@ -79,11 +79,15 @@ BIBLES_DEFAULT_PARAMS = {
    'version': 'eng-ESV'
 }
 
-def MakeBiblesRequest(data):
-   print data
+def MakeBiblesRequest(data, version=None):
    LoadBiblesKey()
    par = BIBLES_DEFAULT_PARAMS
    par['q[]'] = data
+   if version is not None:
+      if re.search(r'^[a-z]+-', version) is None:
+         version = 'eng-' + version
+      par['version'] = version
+   print par
    return requests.get(BIBLES_URL, params=par, auth=requests.auth.HTTPBasicAuth(BIBLES_KEY, 'X'))
 
 def LoadBiblesKey():
@@ -94,24 +98,23 @@ def LoadBiblesKey():
       api_key_file.close()
 
 def GetPassage2(verse):
-   passageSpec = '%(book)s+%(chap_start)s:%(v_start)s-%(chap_end)s:%(v_end)s' % {
-      'book': verse[0],
-      'chap_start': verse[1],
-      'v_start': verse[2],
-      'chap_end': verse[3],
-      'v_end': verse[4]
-   }
-   text = json.loads(MakeBiblesRequest(passageSpec).text)['response']['search']['result']['passages'][0]['text']
-   text = re.sub(r'<sup( \w+="[\w\d\.]+")+>\d+</sup>', ' ', text)
-   text = re.sub(r'<h3( \w+="[\w\d\.]+")+>[\w\s]+</h3>', ' ', text)
-   text = re.sub(r'<span( \w+="[\w\d\.]+")+>([\w\s]+)</span>', r'\2', text)
-   text = text.replace('*', '')
-   text = text.replace('\n', ' ')
-   soup = BeautifulSoup(text)
-   verses = [ x for x in soup.stripped_strings ]
+   passageSpec = scriptures.reference_to_string(verse[0], verse[1], verse[2], verse[3], verse[4])
+   passages = json.loads(MakeBiblesRequest(passageSpec, verse[5]).text)['response']['search']['result']['passages']
+   verses = []
+   if len(passages) > 0:
+      text = passages[0]['text']
+      text = text.replace('\n', '')
+      text = re.sub(r'<h\d(?: \w+="[\w\d\.]+")+>.+?</h\d>', '', text)
+      text = re.sub(r'<p(?: \w+="[\w\d\.]+")+>', '', text)
+      text = re.sub(r'</p>', '', text)
+      text = re.sub(r'<span(?: \w+="[\w\d\.]+")+>(.+?)</span>', r'\1', text)
+      verses = re.split(r'<sup(?: \w+="[\w\d\.-]+")+>[\d-]+</sup>', text)
+      verses = [ x for x in verses if x != '' ]
+
    return '\r\n'.join(verses).encode('utf-8')
 
 if __name__ == "__main__":
-   verse = ('John', 3, 16, 3, 16)
-   result = GetPassage2(verse)
-   #print result
+   text = 'John 3:16-17 CEV'
+   verse = scriptures.extract(text)
+   result = GetPassage2(verse[0])
+   print result
