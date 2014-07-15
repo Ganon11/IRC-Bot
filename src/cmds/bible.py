@@ -27,12 +27,16 @@ def bible(components):
       start_string = scriptures.reference_to_string(r[0], r[1], r[2], r[1], r[2])
       end_string = scriptures.reference_to_string(r[0], r[3], r[4], r[3], r[4])
       verse_length = verse_length + len(Passage(start_string, end_string))
+      v = 'eng-ESV'
+      if r[5] is not None:
+         v = r[5]
       if verse_length > 5:
          return 'Could not fetch verses: length of passage too long'.encode('utf8')
       vs = bible_functions.GetPassage2(r)
-      response = '%(old_resp)s%(spec)s (ESV)\r\n%(verses)s\r\n' % {
+      response = '%(old_resp)s%(spec)s (%(version)s)\r\n%(verses)s\r\n' % {
          'old_resp': response,
          'spec': scriptures.reference_to_string(r[0], r[1], r[2], r[3], r[4]),
+         'version': v
          'verses': vs
       }
    return response
