@@ -36,7 +36,7 @@ def bible(components):
       response = '%(old_resp)s%(spec)s (%(version)s)\r\n%(verses)s\r\n' % {
          'old_resp': response,
          'spec': scriptures.reference_to_string(r[0], r[1], r[2], r[3], r[4]),
-         'version': v
+         'version': v,
          'verses': vs
       }
    return response
