@@ -23,7 +23,8 @@ cmd_char = '!'
 # channels to join on startup
 channels = list(set([
    '#StarTrek',
-   '#mstark'
+   '#mstark',
+   '#SlamJam'
 ]))
 
 cmds = {
