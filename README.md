@@ -1,3 +1,5 @@
+THIS BOT IS DEPRECATED IN FAVOR OF WORFBOT3
+
 IRC Bot
 =======
 A simple IRC Bot written in Python
